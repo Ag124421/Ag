@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Ajeet Verma | Chestmed Clinic | Pulmonologist in Lucknow</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* === Global Styles & Variables === */
+        :root {
+            --primary: #0077b6; /* Lungs/Air Theme - Deep Blue */
+            --secondary: #023e8a;
+            --accent: #00b4d8; /* Light blue accent */
+            --light: #f0f8ff; /* Alice blue */
+            --dark: #2b2b2b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Smooth scrolling for single page */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px; /* Prevents header from covering titles */
+        }
+
+        body {
+            background-color: #ffffff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* === Navigation === */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: #caf0f8;
+            animation: breathe 3s infinite ease-in-out;
+        }
+
+        /* Hamburger Icon for Mobile */
+        .menu-icon {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            transition: 0.3s ease;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background-color: var(--secondary);
+        }
+
+        /* Responsive Navbar for Mobile */
+        @media (max-width: 768px) {
+            .menu-icon {
+                display: block;
+            }
+
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--secondary);
+                display: none;
+                flex-direction: column;
+                text-align: center;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+                padding: 10px 0;
+            }
+
+            nav ul li {
+                width: 100%;
+            }
+
+            nav a {
+                display: block;
+                padding: 15px;
+                border-radius: 0;
+            }
+        }
+
+        /* === Page Layout === */
+        section {
+            padding: 60px 5%;
+            min-height: auto;
+        }
+
+        #home {
+            padding-top: 120px;
+        }
+
+        h1, h2 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        /* === Animations === */
+        @keyframes breathe {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.15); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 180, 216, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 180, 216, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 180, 216, 0); }
+        }
+
+        /* === Home Section === */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, var(--light) 0%, #caf0f8 100%);
+            border-radius: 15px;
+            padding: 40px;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .hero-text h1 {
+            font-size: 2.8rem;
+            color: var(--primary);
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .hero-text h3 {
+            color: #555;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            animation: pulse 2s infinite;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary);
+        }
+
+        .hero-animation {
+            flex: 1;
+            text-align: center;
+            min-width: 300px;
+        }
+        
+        .hero-animation i {
+            font-size: 10rem;
+            color: var(--accent);
+            animation: breathe 4s infinite ease-in-out;
+        }
+
+        /* === Grid Layouts === */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border-top: 5px solid var(--primary);
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        /* Services Specific Photo Styles & Hover Animations */
+        .service-card {
+            padding: 0;
+            padding-bottom: 25px;
+        }
+
+        .service-img-wrapper {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .service-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease; /* Smooth Zoom Animation */
+        }
+
+        /* Hover Zoom Trigger */
+        .service-card:hover .service-img-wrapper img {
+            transform: scale(1.15);
+        }
+
+        .service-content {
+            padding: 0 20px;
+        }
+
+        /* === Reviews Section === */
+        .review-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .stars {
+            color: #fbbf24;
+            font-size: 1.5rem;
+        }
+
+        .review-box {
+            background: var(--light);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #fbbf24;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        /* === Contact Section === */
+        .contact-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .contact-info, .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .contact-info i {
+            color: var(--primary);
+            margin-right: 10px;
+            width: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <i class="fas fa-lungs"></i> Chestmed Clinic
+        </div>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav id="navbar">
+            <ul>
+                <li><a href="#home" onclick="closeMenu()">Home</a></li>
+                <li><a href="#about" onclick="closeMenu()">About Us</a></li>
+                <li><a href="#services" onclick="closeMenu()">Services</a></li>
+                <li><a href="#reviews" onclick="closeMenu()">Reviews</a></li>
+                <li><a href="#contact" onclick="closeMenu()">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <div class="hero">
+            <div class="hero-text">
+                <h1>Breathe Easier, Live Better</h1>
+                <h3>Expert Pulmonology & Allergy Care in Lucknow</h3>
+                <p>Welcome to Chestmed Clinic. Led by Dr. Ajeet Verma, we provide top-tier diagnosis and treatment for all respiratory, lung, and allergy-related conditions.</p>
+                <br>
+                <a href="#contact" class="btn"><i class="far fa-calendar-alt"></i> Book an Appointment</a>
+            </div>
+            <div class="hero-animation">
+                <i class="fas fa-lungs"></i>
+            </div>
+        </div>
+        
+        <div class="grid-container">
+            <div class="card">
+                <i class="fas fa-user-md card-icon"></i>
+                <h3>Specialist Care</h3>
+                <p>Advanced care for Pulmonology and Allergies.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-star card-icon" style="color:#fbbf24;"></i>
+                <h3>5.0/5 Rating</h3>
+                <p>Highly trusted by 40+ patients on Google.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-clock card-icon"></i>
+                <h3>Flexible Hours</h3>
+                <p>Clinic open till 9:00 PM for your convenience.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" style="background-color: var(--light);">
+        <h2>About Dr. Ajeet Verma</h2>
+        <p>Providing outstanding healthcare services with a focus on comprehensive pulmonary and allergy treatments.</p>
+        
+        <div class="grid-container" style="grid-template-columns: 1fr;">
+            <div class="card" style="text-align: left; display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                <div style="flex: 1; min-width: 250px; text-align: center;">
+                    <i class="fas fa-stethoscope" style="font-size: 6rem; color: var(--primary);"></i>
+                </div>
+                <div style="flex: 2; min-width: 300px;">
+                    <h2 style="margin-bottom: 5px;">Dr. Ajeet Verma</h2>
+                    <h4 style="color: var(--accent); margin-bottom: 15px;">Pulmonologist & Allergy Doctor</h4>
+                    <p>Dr. Ajeet Verma is recognized as one of the best chest physicians in Gomti Nagar, Lucknow. At Chestmed Clinic, he is dedicated to offering thorough diagnoses and highly effective treatment plans for complex respiratory diseases.</p>
+                    <p style="margin-top: 15px;"><strong>Contact for Consultation:</strong> 094738 57408</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2>Our Specialized Services</h2>
+        <p>Hover over the images below to view our key focus areas in respiratory care.</p>
+
+        <div class="grid-container">
+            <div class="card service-card">
+                <div class="service-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&fit=crop&w=600&q=80" alt="Tuberculosis Testing">
+                </div>
+                <div class="service-content">
+                    <h3><i class="fas fa-viruses" style="color: var(--primary);"></i> Tuberculosis (TB)</h3>
+                    <p style="margin-top: 10px;">Accurate diagnostic testing and long-term effective medical management for Tuberculosis patients.</p>
+                </div>
+            </div>
+
+            <div class="card service-card">
+                <div class="service-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1584308666744-24d5e4a83350?auto=format&fit=crop&w=600&q=80" alt="Asthma Care">
+                </div>
+                <div class="service-content">
+                    <h3><i class="fas fa-pump-medical" style="color: var(--primary);"></i> Asthma</h3>
+                    <p style="margin-top: 10px;">Personalized action plans, inhaler techniques, and allergy control to help you breathe without asthma attacks.</p>
+                </div>
+            </div>
+
+            <div class="card service-card">
+                <div class="service-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80" alt="COPD Treatment">
+                </div>
+                <div class="service-content">
+                    <h3><i class="fas fa-lungs-virus" style="color: var(--primary);"></i> COPD</h3>
+                    <p style="margin-top: 10px;">Chronic Obstructive Pulmonary Disease management to improve your lung function and daily quality of life.</p>
+                </div>
+            </div>
+
+            <div class="card service-card">
+                <div class="service-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1511295742362-92c96b124e41?auto=format&fit=crop&w=600&q=80" alt="Sleep Apnea">
+                </div>
+                <div class="service-content">
+                    <h3><i class="fas fa-bed" style="color: var(--primary);"></i> Sleep Apnea</h3>
+                    <p style="margin-top: 10px;">Expert evaluation for snoring and sleep-disordered breathing, including CPAP therapy guidance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" style="background-color: var(--light);">
+        <div class="review-header">
+            <h2>Patient Testimonials</h2>
+            <div class="stars">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <h1 style="font-size: 3.5rem; margin: 0; color: var(--dark);">5.0</h1>
+            <p>Perfect Score Based on 40 Google Reviews</p>
+        </div>
+
+        <div class="grid-container">
+            <div class="review-box">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p><em>"Amazing experience outstanding service care provided by Dr Ajeet Verma."</em></p>
+                <p style="text-align: right; margin-top: 10px;"><strong>- Verified Patient (A)</strong></p>
+            </div>
+
+            <div class="review-box">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p><em>"The diagnosis was thorough, and the treatment plan was effective."</em></p>
+                <p style="text-align: right; margin-top: 10px;"><strong>- Verified Patient (S)</strong></p>
+            </div>
+
+            <div class="review-box">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p><em>"I have got treated by Dr Ajeet and must admit he is one of the best."</em></p>
+                <p style="text-align: right; margin-top: 10px;"><strong>- Verified Patient</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <h3>Clinic Details</h3>
+                <br>
+                <p><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> 2/312A, Viram Khand-2, Gomti Nagar, Lucknow, Uttar Pradesh 226010</p>
+                <p><i class="fas fa-phone-alt"></i> <strong>Phone:</strong> 094738 57408</p>
+                <p><i class="fas fa-clock"></i> <strong>Hours:</strong> Open daily, Closes at 9:00 PM</p>
+                
+                <div style="margin-top: 20px; background: #eee; height: 200px; display: flex; align-items: center; justify-content: center; border-radius: 10px; color: #888;">
+                    <i class="fas fa-map" style="font-size: 2rem; margin-right: 10px;"></i> [ Google Map Embed Placeholder ]
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h3>Request an Appointment</h3>
+                <br>
+                <form onsubmit="event.preventDefault(); alert('Request sent successfully! Our reception will contact you shortly.');">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Your Mobile Number" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="5" placeholder="Briefly describe your symptoms (e.g., Asthma, Cough, Sleep Apnea)..."></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Submit Request</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Dr. Ajeet Verma | Chestmed Clinic. All Rights Reserved.</p>
+        <p>Viram Khand-2, Gomti Nagar, Lucknow</p>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+
+        // Toggle menu open/close on mobile
+        function toggleMenu() {
+            navbar.classList.toggle('active');
+        }
+
+        // Close menu automatically when a link is clicked
+        function closeMenu() {
+            if (window.innerWidth <= 768) {
+                navbar.classList.remove('active');
+            }
+        }
+    </script>
+</body>
+</html>
