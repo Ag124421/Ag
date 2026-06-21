@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Yasha Singh & Dr. Durgvijay Singh Clinic | Gomti Nagar</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* === Global Styles & Variables === */
+        :root {
+            --primary: #005b96;
+            --secondary: #03396c;
+            --accent: #e11d48;
+            --light: #f4f8fb;
+            --dark: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* === Navigation === */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: #ff4d4d;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        /* Hamburger Menu Icon */
+        .menu-icon {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            transition: 0.3s ease;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background-color: var(--secondary);
+        }
+
+        /* Mobile Responsive Navbar */
+        @media (max-width: 768px) {
+            .menu-icon {
+                display: block; /* Show hamburger on mobile */
+            }
+
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                display: none; /* Hidden by default */
+                flex-direction: column;
+                text-align: center;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+
+            nav.active {
+                display: flex; /* Show menu when active class is added */
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+                padding: 10px 0;
+            }
+
+            nav ul li {
+                width: 100%;
+            }
+
+            nav a {
+                display: block;
+                padding: 15px;
+                border-radius: 0;
+            }
+        }
+
+        /* === Page Layout === */
+        section {
+            padding: 50px 5%;
+            min-height: auto;
+            scroll-margin-top: 70px; /* Prevents header from hiding section titles */
+        }
+
+        #home {
+            padding-top: 100px;
+        }
+
+        h1, h2 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        /* === Animations === */
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.3); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.3); }
+            70% { transform: scale(1); }
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(225, 29, 72, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0); }
+        }
+
+        @keyframes ecg {
+            0% { stroke-dashoffset: 500; }
+            100% { stroke-dashoffset: 0; }
+        }
+
+        /* === Home Section === */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, var(--light) 0%, #d1e8ff 100%);
+            border-radius: 15px;
+            padding: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .hero-text h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-top: 20px;
+            cursor: pointer;
+            border: none;
+            animation: pulse 2s infinite;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #be123c;
+        }
+
+        .hero-animation {
+            flex: 1;
+            text-align: center;
+            min-width: 300px;
+        }
+
+        .ecg-line {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .ecg-line path {
+            stroke: var(--accent);
+            stroke-width: 4;
+            fill: none;
+            stroke-dasharray: 500;
+            animation: ecg 3s linear infinite;
+        }
+
+        /* === Grid Layouts (About, Services) === */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border-top: 5px solid var(--primary);
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        /* Services Specific Photo Styles & Animations */
+        .service-card {
+            padding: 0; /* Remove padding to let image stretch */
+            padding-bottom: 25px;
+        }
+
+        .service-img-wrapper {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .service-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease; /* Smooth Zoom Animation */
+        }
+
+        /* Hover Animation Trigger for Photo */
+        .service-card:hover .service-img-wrapper img {
+            transform: scale(1.15); /* Zooms image in by 15% */
+        }
+
+        .service-content {
+            padding: 0 20px;
+        }
+
+        /* === Reviews Section === */
+        .review-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .stars {
+            color: #fbbf24;
+            font-size: 1.5rem;
+        }
+
+        .review-box {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #fbbf24;
+            margin-bottom: 20px;
+        }
+
+        /* === Contact Section === */
+        .contact-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .contact-info, .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .contact-info i {
+            color: var(--primary);
+            margin-right: 10px;
+            width: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        /* === Footer === */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <i class="fas fa-heartbeat"></i> Gomti Nagar Clinic
+        </div>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav id="navbar">
+            <ul>
+                <li><a href="#home" onclick="closeMenu()">Home</a></li>
+                <li><a href="#about" onclick="closeMenu()">About Us</a></li>
+                <li><a href="#services" onclick="closeMenu()">Services</a></li>
+                <li><a href="#reviews" onclick="closeMenu()">Reviews</a></li>
+                <li><a href="#contact" onclick="closeMenu()">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <div class="hero">
+            <div class="hero-text">
+                <h1>Expert Medical & Neurological Care</h1>
+                <p>Welcome to the premier medical clinic in Gomti Nagar, Lucknow. Led by Dr. Yasha Singh (Internal Medicine) and Dr. Durgvijay Singh (Neurology), we provide comprehensive, compassionate, and advanced healthcare to our community.</p>
+                <a href="#contact" class="btn"><i class="far fa-calendar-alt"></i> Book an Appointment</a>
+            </div>
+            <div class="hero-animation">
+                <svg class="ecg-line" viewBox="0 0 200 50">
+                    <path d="M 0,25 L 40,25 L 50,10 L 60,40 L 70,25 L 130,25 L 140,0 L 150,50 L 160,25 L 200,25" />
+                </svg>
+            </div>
+        </div>
+        
+        <div class="grid-container" style="margin-top: 50px;">
+            <div class="card">
+                <i class="fas fa-user-md card-icon"></i>
+                <h3>Top Specialists</h3>
+                <p>Consult with MD Medicine and DM Neurology experts under one roof.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-star card-icon"></i>
+                <h3>Highly Rated</h3>
+                <p>Trusted by patients with a 4.4/5 star rating on Google.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-map-marker-alt card-icon"></i>
+                <h3>Prime Location</h3>
+                <p>Easily accessible in Vibhav Khand, Gomti Nagar, near ICICI Bank.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" style="background-color: var(--light);">
+        <h2>About Our Doctors</h2>
+        <p>Our clinic brings together years of specialized experience in General Medicine and Neurology to offer precise diagnoses and highly effective treatment plans.</p>
+        
+        <div class="grid-container">
+            <div class="card">
+                <i class="fas fa-brain card-icon"></i>
+                <h2>Dr. Durgvijay Singh</h2>
+                <h4 style="color: var(--accent); margin-bottom: 10px;">D.M Neurology</h4>
+                <p>A highly skilled neurologist specializing in the diagnosis and treatment of disorders of the nervous system, including the brain, spinal cord, and nerves.</p>
+                <p style="margin-top: 15px;"><strong>Contact:</strong> 8354883887</p>
+            </div>
+            
+            <div class="card">
+                <i class="fas fa-stethoscope card-icon"></i>
+                <h2>Dr. Yasha Singh</h2>
+                <h4 style="color: var(--accent); margin-bottom: 10px;">MBBS, M.D (Medicine)</h4>
+                <p>Recognized as one of the best physicians and diabetologists in Gomti Nagar. Expert in adult medicine, managing complex illnesses, and preventive care.</p>
+                <p style="margin-top: 15px;"><strong>Contact:</strong> 9935552982</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2>Our Medical Services</h2>
+        <p>We offer a wide range of specialized treatments. Hover over the images below to see the effects.</p>
+
+        <div class="grid-container">
+            <div class="card service-card">
+                <div class="service-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=500&q=80" alt="Internal Medicine">
+                </div>
+                <div class="service-content">
+                    <h3><i class="fas fa-notes-medical" style="color: var(--primary);"></i> Internal Medicine</h3>
+                    <p style="margin-top: 10px;">Comprehensive care for adult health, preventative medicine, and treatment of severe chronic illnesses.</p>
+                </div>
+            </div>
+
+            <div class="card service-card">
+                <div class="service-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=500&q=80" alt="Neurology">
+                </div>
+                <div class="service-content">
+                    <h3><i class="fas fa-head-side-virus" style="color: var(--primary);"></i> Neurology</h3>
+                    <p style="margin-top: 10px;">Expert evaluation and management of neurological conditions, nerve damage, and brain disorders.</p>
+                </div>
+            </div>
+
+            <div class="card service-card">
+                <div class="service-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=500&q=80" alt="Diabetes Management">
+                </div>
+                <div class="service-content">
+                    <h3><i class="fas fa-tint" style="color: var(--primary);"></i> Diabetes Care</h3>
+                    <p style="margin-top: 10px;">Recognized as the best diabetologist clinic in the area. We help you manage and control your blood sugar effectively.</p>
+                </div>
+            </div>
+
+            <div class="card service-card">
+                <div class="service-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=500&q=80" alt="Anaemia Treatment">
+                </div>
+                <div class="service-content">
+                    <h3><i class="fas fa-vial" style="color: var(--primary);"></i> Anaemia Treatment</h3>
+                    <p style="margin-top: 10px;">Targeted diagnostics and therapeutic plans for all types of Anaemia and blood-related deficiencies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" style="background-color: var(--light);">
+        <div class="review-header">
+            <h2>Patient Testimonials</h2>
+            <div class="stars">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+            </div>
+            <h1 style="font-size: 3rem; margin: 0;">4.4</h1>
+            <p>Based on 79+ Google Reviews</p>
+        </div>
+
+        <div class="review-box">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <p><em>"Dr. Yasha Singh is undoubtedly the best physician in Gomti Nagar. Her treatment for my diabetes has been life-changing. Very patient and listens to all problems carefully."</em></p>
+            <p style="text-align: right;"><strong>- Verified Patient</strong></p>
+        </div>
+
+        <div class="review-box">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <p><em>"Consulted Dr. Durgvijay Singh for severe migraines. His diagnosis is highly accurate and the medication worked perfectly. Highly recommend this clinic."</em></p>
+            <p style="text-align: right;"><strong>- Verified Patient</strong></p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <h3>Clinic Details</h3>
+                <br>
+                <p><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> B-3/177, near ICICI Bank, Vibhav Khand -3, Vibhav Khand, Gomti Nagar, Lucknow, Uttar Pradesh 226010</p>
+                <p><i class="fas fa-phone-alt"></i> <strong>Dr. Yasha Singh:</strong> 099355 52982</p>
+                <p><i class="fas fa-phone-alt"></i> <strong>Dr. Durgvijay Singh:</strong> 83548 83887</p>
+                <p><i class="fas fa-clock"></i> <strong>Hours:</strong> Open daily, Closes at 2:00 PM</p>
+                
+                <div style="margin-top: 20px; background: #eee; height: 200px; display: flex; align-items: center; justify-content: center; border-radius: 10px; color: #888;">
+                    <i class="fas fa-map" style="font-size: 2rem; margin-right: 10px;"></i> [ Google Map Intentionally Left Blank For Embed Code ]
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h3>Request a Callback</h3>
+                <br>
+                <form onsubmit="event.preventDefault(); alert('Request sent successfully! Our reception will contact you shortly.');">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Your Mobile Number" required>
+                    </div>
+                    <div class="form-group">
+                        <select>
+                            <option>Consult Dr. Yasha Singh (Medicine)</option>
+                            <option>Consult Dr. Durgvijay Singh (Neurology)</option>
+                            <option>General Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="4" placeholder="Briefly describe your symptoms or reason for visit..."></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Submit Request</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Dr. Yasha Singh & Dr. Durgvijay Singh Clinic. All Rights Reserved.</p>
+        <p>Vibhav Khand, Gomti Nagar, Lucknow</p>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+
+        // Toggle menu open/close on mobile
+        function toggleMenu() {
+            navbar.classList.toggle('active');
+        }
+
+        // Close menu automatically when a link is clicked
+        function closeMenu() {
+            if (window.innerWidth <= 768) {
+                navbar.classList.remove('active');
+            }
+        }
+    </script>
+</body>
+</html>
