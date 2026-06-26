@@ -1,449 +1,229 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Elite Event Management | Best Decorators & Planners in Lucknow</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
-        }
-        .modal-animate {
-            animation: scaleUp 0.25s ease-out forwards;
-        }
-        @keyframes scaleUp {
-            from { transform: scale(0.95); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAT JAO TANU💙</title>
+
+<style>
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+#playBtn{
+    position:fixed;
+    top:20px;
+    right:20px;
+    background:#2196f3;
+    color:white;
+    border:none;
+    padding:14px 24px;
+    border-radius:50px;
+    font-size:18px;
+    cursor:pointer;
+    box-shadow:0 0 20px rgba(33,150,243,.5);
+    transition:.3s;
+}
+
+#playBtn:hover{
+    transform:scale(1.08);
+    background:#1565c0;
+}
+
+body{
+    margin:0;
+    padding:40px 20px;
+    background:linear-gradient(135deg,#0b1d51,#1d4ed8,#60a5fa);
+    min-height:100vh;
+    overflow-y:auto;
+    overflow-x:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.card{
+    width:90%;
+    max-width:900px;
+    padding:50px;
+    margin:40px auto;
+}
+
+h1{ 
+width: 100%;
+height: 100px:
+    font-size:42px;
+    margin-bottom:20px;
+    color: white;
+}
+
+h2{
+    color: #bfe8ff;
+    margin-bottom:30px;
+}
+
+p{
+    font-size:22px;
+    line-height:1.9;
+}
+
+.footer{
+    margin-top:35px;
+    font-size:24px;
+    color:#ffe082;
+    font-weight:bold;
+}
+
+.sign{
+    margin-top:20px;
+    font-size:22px;
+    color:#ffffff;
+}
+
+@keyframes fade{
+from{opacity:0;transform:scale(.8);}
+to{opacity:1;transform:scale(1);}
+}
+
+/* Sparkles */
+
+.sparkle{
+position:absolute;
+width:4px;
+height:4px;
+background:white;
+border-radius:50%;
+animation:twinkle 3s linear infinite;
+}
+
+@keyframes twinkle{
+0%{transform:scale(0);opacity:0;}
+50%{transform:scale(2);opacity:1;}
+100%{transform:scale(0);opacity:0;}
+}
+
+/* Flowers */
+
+.flower{
+position:absolute;
+top:-30px;
+font-size:24px;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(-10vh) rotate(0deg);
+opacity:1;
+}
+100%{
+transform:translateY(110vh) rotate(360deg);
+opacity:.9;
+}
+}
+</style>
+
 </head>
-<body class="bg-slate-50 text-slate-800">
 
-    <nav class="sticky top-0 z-50 bg-[#0f172a] text-white shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <div class="flex-shrink-0 flex flex-col">
-                    <span class="text-xl font-bold tracking-wide text-amber-400">THE ELITE</span>
-                    <span class="text-xs text-slate-400 tracking-widest font-light">EVENT MANAGEMENT</span>
-                </div>
-                
-                <div class="hidden md:flex space-x-8 items-center font-medium">
-                    <a href="#home" class="hover:text-amber-400 transition-colors">Home</a>
-                    <a href="#services" class="hover:text-amber-400 transition-colors">Services</a>
-                    <a href="#prices" class="hover:text-amber-400 transition-colors">Price List</a>
-                    <a href="#photos" class="hover:text-amber-400 transition-colors">Photos</a>
-                    <a href="#reviews" class="hover:text-amber-400 transition-colors">Reviews</a>
-                    <button onclick="openContactModal()" class="hover:text-amber-400 transition-colors cursor-pointer focus:outline-none font-medium">Contact</button>
-                    
-                    <button onclick="openContactModal()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 px-5 py-2.5 rounded-full font-bold transition-all transform hover:scale-105 shadow">
-                        <i class="fa-solid fa-phone mr-2"></i>Call Now
-                    </button>
-                </div>
+<body>
+<button id="playBtn" onclick="toggleMusic()">
+    ▶ Play Music
+</button>
 
-                <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="text-slate-300 hover:text-white focus:outline-none cursor-pointer text-2xl">
-                        <i class="fa-solid fa-bars" id="menu-icon"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
+<!-- Audio -->
+<audio id="bgMusic" loop>
+    <source src="a.mp3" type="audio/mpeg">
+</audio>
 
-        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-t border-slate-800 px-4 pt-2 pb-6 space-y-3">
-            <a href="#home" class="block py-2 text-slate-300 hover:text-amber-400 font-medium" onclick="toggleMenu()">Home</a>
-            <a href="#services" class="block py-2 text-slate-300 hover:text-amber-400 font-medium" onclick="toggleMenu()">Services</a>
-            <a href="#prices" class="block py-2 text-slate-300 hover:text-amber-400 font-medium" onclick="toggleMenu()">Price List</a>
-            <a href="#photos" class="block py-2 text-slate-300 hover:text-amber-400 font-medium" onclick="toggleMenu()">Photos</a>
-            <a href="#reviews" class="block py-2 text-slate-300 hover:text-amber-400 font-medium" onclick="toggleMenu()">Reviews</a>
-            <button onclick="openContactModal(); toggleMenu()" class="block w-full text-left py-2 text-slate-300 hover:text-amber-400 font-medium focus:outline-none">Contact</button>
-            <button onclick="openContactModal(); toggleMenu()" class="block w-full text-center bg-amber-500 text-slate-950 font-bold py-3 rounded-xl mt-4">
-                <i class="fa-solid fa-phone mr-2"></i>Call Now
-            </button>
-        </div>
-    </nav>
+<div class="card">
 
-    <div id="contact-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm transition-opacity duration-300">
-        <div class="bg-white rounded-2xl p-8 max-w-sm w-full mx-4 relative shadow-2xl modal-animate border border-slate-100">
-            <button onclick="closeContactModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-800 focus:outline-none transition-colors cursor-pointer">
-                <i class="fa-solid fa-xmark text-2xl"></i>
-            </button>
-            
-            <div class="text-center">
-                <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-4 animate-pulse">
-                    <i class="fa-solid fa-headset"></i>
-                </div>
-                <h3 class="text-2xl font-bold text-slate-900 mb-2">Connect Instantly</h3>
-                <p class="text-slate-600 mb-6 text-sm leading-relaxed">Let's craft your milestone event together. Click below to ring our booking desk!</p>
-                
-                <a href="tel:7052071716" class="inline-block w-full bg-[#0f172a] hover:bg-slate-800 text-white font-bold text-lg py-4 rounded-xl shadow-lg transition-transform transform hover:-translate-y-0.5 tracking-wide">
-                    <i class="fa-solid fa-phone text-amber-400 mr-2"></i> 7052071716
-                </a>
-                <span class="text-xs text-slate-400 block mt-3"><i class="fa-solid fa-circle text-emerald-500 mr-1 text-[10px]"></i> Active Line · Available 24 Hours</span>
-            </div>
-        </div>
-    </div>
+<h1>💙 Dear Tanu 💙</h1>
 
-    <section id="home" class="relative bg-[#0f172a] min-h-[80vh] flex items-center justify-center text-center px-4 py-16 overflow-hidden">
-        <div class="absolute inset-0 bg-cover bg-center opacity-25 mix-blend-overlay" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200');"></div>
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#0f172a]/90"></div>
-        
-        <div class="relative max-w-4xl mx-auto z-10 text-white">
-            <div class="inline-flex items-center space-x-2 bg-slate-900/80 border border-amber-500/30 px-5 py-2.5 rounded-full mb-6 shadow-xl">
-                <span class="text-amber-400 font-bold text-sm sm:text-base">5.0</span>
-                <div class="text-amber-400 text-xs sm:text-sm tracking-tighter">
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                </div>
-                <span class="text-slate-300 text-xs">(20 Verified Google Reviews)</span>
-            </div>
+<h2>Ek Chhota Sa Message Tumhare Liye</h2>
 
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
-                Where Every Event Finds Its <br><span class="text-amber-400">Perfect Masterpiece</span>
-            </h1>
-            <p class="text-base sm:text-lg md:text-xl text-slate-300 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
-                Lucknow's elite event management agency specializing in breathtaking setups, theme integrations, and premium custom installations tailored beautifully to your dreams.
-            </p>
+<p>
 
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                <a href="#prices" class="w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-8 py-4 rounded-xl shadow-lg shadow-amber-500/20 transition-all text-center">
-                    Explore Event Packages
-                </a>
-                <button onclick="openContactModal()" class="w-full sm:w-auto border border-slate-500 hover:border-white text-white font-medium px-8 py-4 rounded-xl transition-all backdrop-blur-xs">
-                    Get Custom Quotation
-                </button>
-            </div>
+🌸<br><br>
+<p style="color: yellow;">
+School badal jaane se yaadein kabhi nahi badalti,<br>
+Raaste alag ho jaayein to dosti kabhi kam nahi hoti.<br><br>
 
-            <div class="mt-12 text-slate-400 text-sm flex flex-wrap justify-center items-center gap-y-2 gap-x-6">
-                <span><i class="fa-solid fa-circle text-emerald-500 text-xs mr-2 animate-pulse"></i>Open 24 Hours</span>
-                <span class="hidden sm:inline text-slate-700">|</span>
-                <span><i class="fa-solid fa-location-dot text-amber-400 mr-2"></i>Vibhuti Khand, Gomti Nagar</span>
-            </div>
-        </div>
-    </section>
+Tum jahan bhi jaogi,<br>
+Wahan apni muskaan se sabka dil jeet logi.<br>
+Aur mujhe yakeen hai ki tum apni har manzil ko hasil karogi.<br><br>
 
-    <section id="services" class="py-20 px-4 max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-            <span class="text-amber-600 font-semibold text-xs uppercase tracking-widest block mb-2">Our Capabilities</span>
-            <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Comprehensive Management Services</h2>
-            <div class="h-1 w-16 bg-amber-500 mx-auto mt-4 rounded-full"></div>
-        </div>
+Zindagi ke naye safar me har kadam par khushiyan mile,<br>
+Har sapna tumhara sach ho,<br>
+Aur har din tumhare chehre par wahi pyari si smile rahe.<br><br>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="bg-white p-8 rounded-2xl shadow-xs border border-slate-100 hover:shadow-xl transition-all group">
-                <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center text-xl mb-6 group-hover:bg-amber-500 group-hover:text-white transition-colors">
-                    <i class="fa-solid fa-cake-candles"></i>
-                </div>
-                <h3 class="text-xl font-bold text-slate-900 mb-3">Birthday Party Planning</h3>
-                <p class="text-slate-600 text-sm leading-relaxed">Magical backdrops including custom pastel themes, beautiful elephant integrations, ring arches, and grand child bash frameworks.</p>
-            </div>
+Agar kabhi bhi lage ki koi saath nahi hai,<br>
+Bas ek baat yaad rakhna...<br><br>
 
-            <div class="bg-white p-8 rounded-2xl shadow-xs border border-slate-100 hover:shadow-xl transition-all group">
-                <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center text-xl mb-6 group-hover:bg-amber-500 group-hover:text-white transition-colors">
-                    <i class="fa-solid fa-gift"></i>
-                </div>
-                <h3 class="text-xl font-bold text-slate-900 mb-3">Anniversary Party Setup</h3>
-                <p class="text-slate-600 text-sm leading-relaxed">Stunning fairy-lit tunnel walkway passages, ambient spotlight arrays, and custom floral installations for your milestones.</p>
-            </div>
+<strong style="font-size:28px;color:#ffe082;">
+✨ Main Hamesha Tumhare Saath Hoon. ✨
+</strong>
 
-            <div class="bg-white p-8 rounded-2xl shadow-xs border border-slate-100 hover:shadow-xl transition-all group">
-                <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center text-xl mb-6 group-hover:bg-amber-500 group-hover:text-white transition-colors">
-                    <i class="fa-solid fa-baby"></i>
-                </div>
-                <h3 class="text-xl font-bold text-slate-900 mb-3">Baby Shower Planning</h3>
-                <p class="text-slate-600 text-sm leading-relaxed">Elegant, cozy pastel drapes, creative photography zones, props handling, and comfortable seating stages.</p>
-            </div>
+<br><br>
 
-            <div class="bg-white p-8 rounded-2xl shadow-xs border border-slate-100 hover:shadow-xl transition-all group">
-                <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center text-xl mb-6 group-hover:bg-amber-500 group-hover:text-white transition-colors">
-                    <i class="fa-solid fa-print"></i>
-                </div>
-                <h3 class="text-xl font-bold text-slate-900 mb-3">Invitation Printing</h3>
-                <p class="text-slate-600 text-sm leading-relaxed">Premium, personalized high-grade card print catalogs, digital invites design, and stylized corporate flyer integration layout.</p>
-            </div>
+Chahe kitni bhi dooriyan aa jaayein,<br>
+Hamari dosti hamesha dil se judi rahegi. 💙
 
-            <div class="bg-white p-8 rounded-2xl shadow-xs border border-slate-100 hover:shadow-xl transition-all group">
-                <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center text-xl mb-6 group-hover:bg-amber-500 group-hover:text-white transition-colors">
-                    <i class="fa-solid fa-bullhorn"></i>
-                </div>
-                <h3 class="text-xl font-bold text-slate-900 mb-3">Event Marketing</h3>
-                <p class="text-slate-600 text-sm leading-relaxed">End-to-end commercial outreach setups, registration structures, premium audio visual consulting, and corporate banner placements.</p>
-            </div>
+</p>
 
-            <div class="bg-white p-8 rounded-2xl shadow-xs border border-slate-100 hover:shadow-xl transition-all group">
-                <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center text-xl mb-6 group-hover:bg-amber-500 group-hover:text-white transition-colors">
-                    <i class="fa-solid fa-shuffle"></i>
-                </div>
-                <h3 class="text-xl font-bold text-slate-900 mb-3">Activity Integration &amp; Coordination</h3>
-                <p class="text-slate-600 text-sm leading-relaxed"> Flawless master of ceremonies timelines, cold pyro entrance sequences, live artist alignments, and venue liaison work.</p>
-            </div>
-        </div>
-    </section>
+<div class="footer">
+PLESE MAT JAO NA TANU,<BR>
+🌸 Best Wishes For Your New Journey 🌸
+</div>
 
-    <section id="prices" class="py-20 bg-slate-900 text-white px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <span class="text-amber-400 font-semibold text-xs uppercase tracking-widest block mb-2">Transparent Rates</span>
-                <h2 class="text-3xl md:text-4xl font-bold">Curated Luxury Packages</h2>
-                <div class="h-1 w-16 bg-amber-400 mx-auto mt-4 rounded-full"></div>
-                <p class="text-slate-400 mt-4 text-sm max-w-md mx-auto">Premium all-inclusive event installations designed around transparency, with zero overhead hidden charges.</p>
-            </div>
+<div class="sign">
+TUMARA NORMAL DOST -- ARYAN❤️
+</div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
-                <div class="bg-slate-800 border border-slate-700 rounded-2xl p-8 flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-md font-bold text-amber-400 uppercase tracking-widest mb-1">Elite Standard Theme</h3>
-                        <p class="text-xs text-slate-400 mb-6">Ideal for Elegant Home Birthdays &amp; Showers</p>
-                        <div class="mb-6">
-                            <span class="text-3xl font-extrabold text-white">₹11,999</span>
-                            <span class="text-xs text-slate-400 font-light"> Base Package</span>
-                        </div>
-                        <ul class="space-y-3.5 text-xs text-slate-300 border-t border-slate-700/60 pt-6">
-                            <li><i class="fa-solid fa-circle-check text-amber-400 mr-2"></i>Premium Gloss Balloon Arch/Ring Setup</li>
-                            <li><i class="fa-solid fa-circle-check text-amber-400 mr-2"></i>Custom Neon Signage Inclusion</li>
-                            <li><i class="fa-solid fa-circle-check text-amber-400 mr-2"></i>Cake Table Setting with Silk Overlay</li>
-                            <li><i class="fa-solid fa-circle-check text-amber-400 mr-2"></i>Basic Focus Spotlight Framework</li>
-                        </ul>
-                    </div>
-                    <button onclick="openContactModal()" class="block w-full text-center border border-amber-500/40 hover:bg-amber-500 hover:text-slate-950 text-amber-400 font-semibold text-xs uppercase tracking-wider py-3.5 rounded-xl mt-8 transition-colors">Select Package</button>
-                </div>
+</div>
 
-                <div class="bg-slate-800 border-2 border-amber-500 rounded-2xl p-8 flex flex-col justify-between relative shadow-2xl">
-                    <div class="absolute top-0 right-6 transform -translate-y-1/2 bg-amber-500 text-slate-950 px-3 py-1 text-[10px] font-bold uppercase rounded-full tracking-widest">Most Requested</div>
-                    <div>
-                        <h3 class="text-md font-bold text-amber-400 uppercase tracking-widest mb-1">Traditional Grandeur</h3>
-                        <p class="text-xs text-slate-400 mb-6">Perfect for Haldi, Mehendi &amp; Pre-Weddings</p>
-                        <div class="mb-6">
-                            <span class="text-3xl font-extrabold text-white">₹24,999</span>
-                            <span class="text-xs text-slate-400 font-light"> Base Package</span>
-                        </div>
-                        <ul class="space-y-3.5 text-xs text-slate-300 border-t border-slate-700/60 pt-6">
-                            <li><i class="fa-solid fa-circle-check text-amber-400 mr-2"></i>Vibrant Yellow/Green Fabric Drapes Stage</li>
-                            <li><i class="fa-solid fa-circle-check text-amber-400 mr-2"></i>Handcrafted Golden Urli Bath Tub Seating</li>
-                            <li><i class="fa-solid fa-circle-check text-amber-400 mr-2"></i>Fresh Marigold &amp; Exotic Floral Trims</li>
-                            <li><i class="fa-solid fa-circle-check text-amber-400 mr-2"></i>High-Acuity LED Spotlight Track Array</li>
-                            <li><i class="fa-solid fa-circle-check text-amber-400 mr-2"></i>Welcome Signboard Easel Placement</li>
-                        </ul>
-                    </div>
-                    <button onclick="openContactModal()" class="block w-full text-center bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs uppercase tracking-wider py-3.5 rounded-xl mt-8 shadow-lg transition-all">Select Package</button>
-                </div>
+<script>
+const music = document.getElementById("bgMusic");
+const btn = document.getElementById("playBtn");
 
-                <div class="bg-slate-800 border border-slate-700 rounded-2xl p-8 flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-md font-bold text-amber-400 uppercase tracking-widest mb-1">Royal Milestone Gala</h3>
-                        <p class="text-xs text-slate-400 mb-6">Designed for Premium Large Stage &amp; Entry Events</p>
-                        <div class="mb-6">
-                            <span class="text-3xl font-extrabold text-white">₹54,999</span>
-                            <span class="text-xs text-slate-400 font-light"> Base Package</span>
-                        </div>
-                        <ul class="space-y-3.5 text-xs text-slate-300 border-t border-slate-700/60 pt-6">
-                            <li><i class="fa-solid fa-circle-check text-amber-400 mr-2"></i>Grand Pathway Fairy-Lit Tunnel Walkway</li>
-                            <li><i class="fa-solid fa-circle-check text-amber-400 mr-2"></i>Bridal Entry System with Cold Pyro Set (4)</li>
-                            <li><i class="fa-solid fa-circle-check text-amber-400 mr-2"></i>Elite Stage Backdrops &amp; Designer Lounge Sofas</li>
-                            <li><i class="fa-solid fa-circle-check text-amber-400 mr-2"></i>Full High-Definition Ambient Light Arrays</li>
-                            <li><i class="fa-solid fa-circle-check text-amber-400 mr-2"></i>Dedicated Event Manager &amp; Coordinator</li>
-                        </ul>
-                    </div>
-                    <button onclick="openContactModal()" class="block w-full text-center border border-amber-500/40 hover:bg-amber-500 hover:text-slate-950 text-amber-400 font-semibold text-xs uppercase tracking-wider py-3.5 rounded-xl mt-8 transition-colors">Select Package</button>
-                </div>
-            </div>
-        </div>
-    </section>
+function toggleMusic(){
+    if(music.paused){
+        music.play();
+        btn.innerHTML = "⏸ Pause Music";
+    }else{
+        music.pause();
+        btn.innerHTML = "▶ Play Music";
+    }
+}
 
-    <section id="photos" class="py-20 px-4 max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-            <span class="text-amber-600 font-semibold text-xs uppercase tracking-widest block mb-2">Live Portfolio</span>
-            <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Real Setup Execution Gallery</h2>
-            <div class="h-1 w-16 bg-amber-500 mx-auto mt-4 rounded-full"></div>
-            <p class="text-slate-600 mt-4 text-xs">Visual records of real setups crafted on-location for our clients across Lucknow.</p>
-        </div>
+// Sparkles
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="overflow-hidden rounded-2xl relative group shadow-xs bg-slate-200 aspect-[4/5]">
-                <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&q=80&w=600" alt="Elephant Theme Birthday Bash" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent flex flex-col justify-end p-6 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span class="text-amber-400 text-xs uppercase font-semibold tracking-widest mb-1">Birthday Event</span>
-                    <h4 class="text-base font-bold text-white">Viyan Admin's Pastel Elephant Bash</h4>
-                </div>
-            </div>
-            <div class="overflow-hidden rounded-2xl relative group shadow-xs bg-slate-200 aspect-[4/5]">
-                <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&q=80&w=600" alt="Fairy-Lit Tunnel Entrance" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent flex flex-col justify-end p-6 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span class="text-amber-400 text-xs uppercase font-semibold tracking-widest mb-1">Anniversary Entry</span>
-                    <h4 class="text-base font-bold text-white">Fairy-Lit Tunnel Pathway Runway</h4>
-                </div>
-            </div>
-            <div class="overflow-hidden rounded-2xl relative group shadow-xs bg-slate-200 aspect-[4/5]">
-                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=600" alt="Bridal Entry Cold Pyros" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent flex flex-col justify-end p-6 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span class="text-amber-400 text-xs uppercase font-semibold tracking-widest mb-1">Grand Wedding</span>
-                    <h4 class="text-base font-bold text-white">Royal Entry with Cold Pyro Sparks</h4>
-                </div>
-            </div>
-            <div class="overflow-hidden rounded-2xl relative group shadow-xs bg-slate-200 aspect-[4/5]">
-                <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=600" alt="Ring Frame Balloon setup" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent flex flex-col justify-end p-6 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span class="text-amber-400 text-xs uppercase font-semibold tracking-widest mb-1">Birthday Decor</span>
-                    <h4 class="text-base font-bold text-white">Gloss Black &amp; Amber Ring Installation</h4>
-                </div>
-            </div>
-            <div class="overflow-hidden rounded-2xl relative group shadow-xs bg-slate-200 aspect-[4/5]">
-                <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&q=80&w=600" alt="Traditional Urli Setup" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent flex flex-col justify-end p-6 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span class="text-amber-400 text-xs uppercase font-semibold tracking-widest mb-1">Haldi Backdrop</span>
-                    <h4 class="text-base font-bold text-white">Luxury Handcrafted Golden Urli Bath</h4>
-                </div>
-            </div>
-            <div class="overflow-hidden rounded-2xl relative group shadow-xs bg-slate-200 aspect-[4/5]">
-                <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&q=80&w=600" alt="Jungle arch birthday" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent flex flex-col justify-end p-6 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span class="text-amber-400 text-xs uppercase font-semibold tracking-widest mb-1">Wild One Birthday</span>
-                    <h4 class="text-base font-bold text-white">Jungle Safari Balloon Stage Framing</h4>
-                </div>
-            </div>
-        </div>
-    </section>
+for(let i=0;i<80;i++){
+let s=document.createElement("div");
+s.className="sparkle";
+s.style.left=Math.random()*100+"vw";
+s.style.top=Math.random()*100+"vh";
+s.style.animationDelay=Math.random()*5+"s";
+document.body.appendChild(s);
+}
 
-    <section id="reviews" class="py-20 bg-slate-100 px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <span class="text-amber-600 font-semibold text-xs uppercase tracking-widest block mb-2">Google Summary</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Client Testimonials</h2>
-                <div class="h-1 w-16 bg-amber-500 mx-auto mt-4 rounded-full"></div>
-            </div>
+// Flowers
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-2xl shadow-xs border border-slate-200/50 flex flex-col justify-between">
-                    <div>
-                        <div class="text-amber-400 mb-4 text-xs tracking-tighter">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        </div>
-                        <p class="text-slate-700 italic text-sm font-medium leading-relaxed mb-6">
-                            "Overall elite events is best in lucknow they quote best prices for decor."
-                        </p>
-                    </div>
-                    <div class="flex items-center space-x-3 border-t border-slate-100 pt-4">
-                        <div class="w-9 h-9 bg-amber-500 text-slate-950 rounded-full font-bold flex items-center justify-center text-xs">M</div>
-                        <div>
-                            <h4 class="font-bold text-slate-900 text-xs">Local Client</h4>
-                            <span class="text-[10px] text-slate-400 block">Verified Google Reviewer</span>
-                        </div>
-                    </div>
-                </div>
+const flowers=["🌸","🌺","🌼","💙"];
 
-                <div class="bg-white p-8 rounded-2xl shadow-xs border border-slate-200/50 flex flex-col justify-between">
-                    <div>
-                        <div class="text-amber-400 mb-4 text-xs tracking-tighter">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        </div>
-                        <p class="text-slate-700 italic text-sm font-medium leading-relaxed mb-6">
-                            "You guys delivered what you promised."
-                        </p>
-                    </div>
-                    <div class="flex items-center space-x-3 border-t border-slate-100 pt-4">
-                        <div class="w-9 h-9 bg-amber-500 text-slate-950 rounded-full font-bold flex items-center justify-center text-xs">R</div>
-                        <div>
-                            <h4 class="font-bold text-slate-900 text-xs">Happy Customer</h4>
-                            <span class="text-[10px] text-slate-400 block">Verified Google Reviewer</span>
-                        </div>
-                    </div>
-                </div>
+for(let i=0;i<40;i++){
+let f=document.createElement("div");
+f.className="flower";
+f.innerHTML=flowers[Math.floor(Math.random()*flowers.length)];
+f.style.left=Math.random()*100+"vw";
+f.style.animationDuration=(6+Math.random()*8)+"s";
+f.style.animationDelay=Math.random()*8+"s";
+document.body.appendChild(f);
+}
 
-                <div class="bg-white p-8 rounded-2xl shadow-xs border border-slate-200/50 flex flex-col justify-between">
-                    <div>
-                        <div class="text-amber-400 mb-4 text-xs tracking-tighter">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        </div>
-                        <p class="text-slate-700 italic text-sm font-medium leading-relaxed mb-6">
-                            "Good place to organize events"
-                        </p>
-                    </div>
-                    <div class="flex items-center space-x-3 border-t border-slate-100 pt-4">
-                        <div class="w-9 h-9 bg-amber-500 text-slate-950 rounded-full font-bold flex items-center justify-center text-xs">N</div>
-                        <div>
-                            <h4 class="font-bold text-slate-900 text-xs">Event Host</h4>
-                            <span class="text-[10px] text-slate-400 block">Verified Google Reviewer</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+</script>
 
-    <footer class="bg-slate-950 text-slate-400 pt-16 pb-8 px-4 border-t border-slate-900">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <div>
-                <h3 class="text-white text-md font-bold tracking-wider mb-4 uppercase">The Elite Event Management</h3>
-                <p class="text-xs leading-relaxed mb-4">
-                    Lucknow's high-fidelity decoration agency. Combining stellar customer care, transparent package value milestones, and elite standard venue arrangements.
-                </p>
-                <div class="text-amber-400 text-xs font-semibold">⭐ 5.0 Google Rating · 20 Live Reviews</div>
-            </div>
-
-            <div>
-                <h3 class="text-white text-xs font-bold uppercase tracking-widest mb-4">Headquarters &amp; Hours</h3>
-                <p class="text-xs mb-2"><i class="fa-solid fa-clock text-amber-400 mr-2"></i>Open Daily: 24 Hours Operation</p>
-                <p class="text-xs leading-relaxed">
-                    <i class="fa-solid fa-location-dot text-amber-400 mr-2"></i>
-                    D-140- 1st floor, near RK Timber,<br>
-                    Vibhuti Khand, Gomti Nagar,<br>
-                    Lucknow, Uttar Pradesh 226010
-                </p>
-            </div>
-
-            <div class="flex flex-col justify-start">
-                <h3 class="text-white text-xs font-bold uppercase tracking-widest mb-4">Instant Access</h3>
-                <p class="text-xs mb-4">Avoid filling prolonged web documentation. Toggle our live overlay window to get a quick customized price quote.</p>
-                <button onclick="openContactModal()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 text-center text-xs font-bold uppercase tracking-wider py-4 px-6 rounded-xl transition-all">
-                    <i class="fa-solid fa-comments mr-2"></i>Trigger Live Call Desk
-                </button>
-            </div>
-        </div>
-
-        <div class="max-w-7xl mx-auto border-t border-slate-900 pt-8 text-center text-[11px] text-slate-600">
-            <p>&copy; 2026 The Elite Event Management. All Rights Reserved. Crafted for Lucknow celebrations.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Responsive Drawer Navigation Toggling 
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuIcon = document.getElementById('menu-icon');
-
-        mobileMenuBtn.addEventListener('click', toggleMenu);
-
-        function toggleMenu() {
-            mobileMenu.classList.toggle('hidden');
-            if (mobileMenu.classList.contains('hidden')) {
-                menuIcon.className = 'fa-solid fa-bars';
-            } else {
-                menuIcon.className = 'fa-solid fa-xmark';
-            }
-        }
-
-        // Pop-up Contact Window Element Logic
-        const contactModal = document.getElementById('contact-modal');
-
-        function openContactModal() {
-            contactModal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // Lock background viewport scrolling
-        }
-
-        function closeContactModal() {
-            contactModal.classList.add('hidden');
-            document.body.style.overflow = ''; // Restore background viewport scrolling
-        }
-
-        // Terminate pop-up when clicking exterior overlay backdrop surface area
-        contactModal.addEventListener('click', function(event) {
-            if (event.target === contactModal) {
-                closeContactModal();
-            }
-        });
-    </script>
 </body>
 </html>
